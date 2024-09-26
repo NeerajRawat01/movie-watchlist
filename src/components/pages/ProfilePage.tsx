@@ -14,7 +14,7 @@ const ProfilePage: React.FC = () => {
 
   const loggedInUser = getLoggedInUser();
   return (
-    <div className="flex mt-20 border-2 mx-10 shadow-md px-10 py-12 justify-between items-center">
+    <div className="flex mt-20 border-2 m-10 shadow-md px-10 py-12 justify-between items-center">
       <div className="flex items-center">
         <FaRegUserCircle className="text-8xl" />
         <div className="flex gap-2 flex-col px-4">

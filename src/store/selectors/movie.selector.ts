@@ -18,4 +18,4 @@ export const getMovieDetail = createSelector(
   (movie) => movie.movieDetail
 );
 
-export const loading = createSelector([movieStore], (movie) => movie.loading);
+export const getLoading = createSelector([movieStore], (movie) => movie.loading);

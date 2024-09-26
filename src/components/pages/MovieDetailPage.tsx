@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieDetail } from "../../store/selectors/movie.selector";
+import {
+  getLoading,
+  getMovieDetail,
+} from "../../store/selectors/movie.selector";
 import { MoviesActionType } from "../../store/actions/actions.constants";
 import { IoMdArrowBack } from "react-icons/io";
 import Spinner from "../Spinner";
@@ -21,13 +24,14 @@ const MovieDetailPage: React.FC = () => {
   }, [id, dispatch]);
 
   const movieData = useSelector(getMovieDetail);
+  const loading = useSelector(getLoading);
 
-  if (!movieData) {
+  if (loading) {
     return <Spinner />;
   }
 
   return (
-    <div className="flex gap-10 p-10">
+    <div className="flex flex-col lg:flex-row gap-10 p-10">
       <IoMdArrowBack
         onClick={() => navigate(-1)}
         className="text-3xl cursor-pointer"

@@ -41,30 +41,42 @@ export const logoutUser = (callback: () => void) => {
 export const bookmarkMovie = (movie: Movie) => {
   const users = JSON.parse(localStorage.getItem("users") || "[]");
   const loggedInUser = getLoggedInUser();
-  const updatedUsers = users.map((user: { email: any; bookmarks: Movie[] }) => {
-    if (user.email === loggedInUser.email) {
-      if (!user.bookmarks.includes(movie)) {
-        user.bookmarks.push(movie);
+  const updatedUsers = users.map(
+    (user: { email: string; bookmarks: Movie[] }) => {
+      if (user.email === loggedInUser.email) {
+        if (!user.bookmarks.includes(movie)) {
+          user.bookmarks.push(movie);
+        }
       }
+      return user;
     }
-    return user;
-  });
-
+  );
+  const updatedLoggedInUser = updatedUsers.find(
+    (user: { email: string; bookmarks: Movie[] }) =>
+      user.email === loggedInUser.email
+  );
   localStorage.setItem("users", JSON.stringify(updatedUsers));
-  localStorage.setItem("loggedinuser", JSON.stringify(loggedInUser));
+  localStorage.setItem("loggedin_user", JSON.stringify(updatedLoggedInUser));
 };
 
 // Unbookmark a movie
 export const unbookmarkMovie = (movie: Movie) => {
   const users = JSON.parse(localStorage.getItem("users") || "[]");
   const loggedInUser = getLoggedInUser();
-  const updatedUsers = users.map((user: { email: any; bookmarks: Movie[] }) => {
-    if (user.email === loggedInUser.email) {
-      user.bookmarks = user.bookmarks.filter((b) => b !== movie);
+  const updatedUsers = users.map(
+    (user: { email: string; bookmarks: Movie[] }) => {
+      if (user.email === loggedInUser.email) {
+        user.bookmarks = user.bookmarks.filter(
+          (b) => b.imdbID !== movie.imdbID
+        );
+      }
+      return user;
     }
-    return user;
-  });
-
+  );
+  const updatedLoggedInUser = updatedUsers.find(
+    (user: { email: string; bookmarks: Movie[] }) =>
+      user.email === loggedInUser.email
+  );
   localStorage.setItem("users", JSON.stringify(updatedUsers));
-  localStorage.setItem("loggedinuser", JSON.stringify(loggedInUser));
+  localStorage.setItem("loggedin_user", JSON.stringify(updatedLoggedInUser));
 };

@@ -2,8 +2,6 @@ import { combineReducers } from "redux";
 import movieReducer from "./movie.reducer";
 
 const appReducer = combineReducers({
-  //   auth: authReducer,
-  //   user: userReducer,
   movie: movieReducer,
 });
 

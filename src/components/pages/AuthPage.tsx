@@ -12,8 +12,6 @@ const AuthPage: React.FC = () => {
     setAuthType(type);
   };
 
-  //   localStorage.clear();
-
   const onRegister = () => {
     registerUser(userEmail, userName);
     onAuthTypeChange("signin");
@@ -25,7 +23,7 @@ const AuthPage: React.FC = () => {
 
   return (
     <>
-      <div className=" mx-auto w-1/2 px-20 py-10">
+      <div className="px-10 mt-10 py-5 lg:w-1/2 lg:mx-auto">
         <div className="flex gap-4">
           <button
             onClick={() => onAuthTypeChange("register")}

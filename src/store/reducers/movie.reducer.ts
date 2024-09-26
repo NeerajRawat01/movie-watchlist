@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Movie } from "../../models/movie";
+import { getLoggedInUser } from "../../services/localStorageServices";
 
 export interface movieState {
   moviesData: Movie[];
@@ -32,7 +33,14 @@ export const movieSlice = createSlice({
       }>
     ) => {
       state.loadingList = false;
-      state.moviesData = action.payload.movies;
+      const loggedInUser = getLoggedInUser();
+      const bookmarks = loggedInUser.bookmarks.map((b: Movie) => b.imdbID);
+      state.moviesData = action.payload.movies.map((movie: Movie) => {
+        return {
+          ...movie,
+          bookmarked: bookmarks.includes(movie.imdbID),
+        };
+      });
     },
     fetchDetailedMovie: (
       state,
@@ -55,7 +63,7 @@ export const {
   fetchMovies,
   fetchMoviesCompleted,
   fetchMoviesError,
-  fetchDetailedMovie
+  fetchDetailedMovie,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

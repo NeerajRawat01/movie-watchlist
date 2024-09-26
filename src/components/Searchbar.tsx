@@ -10,12 +10,12 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
         <CiSearch className="text-xl" />
         <input
           onChange={(e) => onSearch(e.target.value)}
-          className="outline-none w-full bg-green-100"
+          className="outline-none w-full"
           placeholder="Type at least 3 characters"
         />
       </div>
 
-      <button className="p-1 rounded-md bg-red-700 text-white ">Search</button>
+      {/* <button className="p-1 rounded-md bg-red-700 text-white ">Search</button> */}
     </div>
   );
 };
