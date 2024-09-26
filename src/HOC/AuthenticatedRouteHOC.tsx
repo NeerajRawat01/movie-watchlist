@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { getLoggedInUser } from "../services/localStorageServices";
-// services
+
 
 const AuthenticatedRouteHOC = <P extends object>(
   Component: React.ComponentType<P>
@@ -9,7 +9,6 @@ const AuthenticatedRouteHOC = <P extends object>(
   const AuthenticatedRoute: React.FC<P> = ({ ...props }) => {
     const loggedInUser = getLoggedInUser();
 
-    console.log("loggedInUser", loggedInUser);
     if (loggedInUser.email) {
       return <Component {...(props as P)} />;
     }

@@ -36,7 +36,7 @@ const MovieDetailPage: React.FC = () => {
         onClick={() => navigate(-1)}
         className="text-3xl cursor-pointer"
       />
-      <div className="">
+      <div>
         <img
           className="h-[40rem] object-cover"
           src={movieData?.Poster}

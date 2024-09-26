@@ -5,6 +5,7 @@ import {
   logoutUser,
 } from "../../services/localStorageServices";
 import { useNavigate } from "react-router-dom";
+import { IoMdArrowBack } from "react-icons/io";
 
 const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,9 +15,13 @@ const ProfilePage: React.FC = () => {
 
   const loggedInUser = getLoggedInUser();
   return (
-    <div className="flex mt-20 border-2 m-10 shadow-md px-10 py-12 justify-between items-center">
+    <div className="flex flex-col md:flex-row  md:mt-20 border-2  md:m-10 shadow-md px-10 py-20 justify-between items-center">
       <div className="flex items-center">
-        <FaRegUserCircle className="text-8xl" />
+        <IoMdArrowBack
+          onClick={() => navigate(-1)}
+          className="text-3xl cursor-pointer"
+        />
+        <FaRegUserCircle className="text-8xl " />
         <div className="flex gap-2 flex-col px-4">
           <span>{loggedInUser.name}</span>
           <span>{loggedInUser.email}</span>
