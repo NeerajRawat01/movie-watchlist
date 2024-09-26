@@ -6,7 +6,7 @@ class MovieService {
   }
 
   public async fetchMovies(query: string) {
-    const response = await axios.get("http://www.omdbapi.com/", {
+    const response = await axios.get("https://www.omdbapi.com/", {
       params: {
         apikey: "5a3e8abc", // Replace with your OMDb API key
         s: query, // Search by a more specific query term
@@ -16,7 +16,7 @@ class MovieService {
   }
 
   public async fetchMovieDetail(id: string) {
-    const response = await axios.get("http://www.omdbapi.com/", {
+    const response = await axios.get("https://www.omdbapi.com/", {
       params: {
         apikey: "5a3e8abc",
         i: id,
