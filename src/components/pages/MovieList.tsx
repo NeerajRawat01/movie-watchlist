@@ -44,19 +44,19 @@ const MovieList: React.FC = () => {
 
   const loading = useSelector(loadingList);
 
-  if (loading) {
-    return <Spinner />;
-  }
-
   return (
     <div className="flex flex-col gap-3">
       <WelcomeCard />
       <SearchBar value={query} onSearch={setQuery} />
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 p-3 gap-5 h-[calc(100vh-16rem)] overflow-auto">
-        {movieData?.map((data) => (
-          <MovieCard key={data.imdbID} cardData={data} />
-        ))}
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 p-3 gap-5 h-[calc(100vh-16rem)] overflow-auto">
+          {movieData?.map((data) => (
+            <MovieCard key={data.imdbID} cardData={data} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
